@@ -1,0 +1,40 @@
+CREATE DATABASE db_LibraryManagement;
+
+/*=========== TABLES ===========*/
+
+CREATE TABLE tbl_publisher (
+		publisher_PublisherName VARCHAR(100) NOT NULL,
+		publisher_PublisherAddress VARCHAR(200) NOT NULL,
+		publisher_PublisherPhone VARCHAR(50) NOT NULL,
+        PRIMARY KEY (publisher_PublisherName
+	);
+CREATE TABLE tbl_book (
+		book_BookID INT NOT NULL AUTO_INCREMENT (1,1),
+        book_Title VARCHAR (100) NOT NULL,
+        book_PublisherName VARCHAR (100) NOT NULL,
+        PRIMARY KEY (book_BookID)
+	)
+CREATE TABLE tbl_library_branch (
+		library_branch_BranchID INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+		library_branch_BranchName VARCHAR(100) NOT NULL,
+		library_branch_BranchAddress VARCHAR(200) NOT NULL
+	);
+
+	SELECT * FROM tbl_library_branch
+
+	CREATE TABLE tbl_borrower (
+		borrower_CardNo INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+		borrower_BorrowerName VARCHAR(100) NOT NULL,
+		borrower_BorrowerAddress VARCHAR(200) NOT NULL,
+		borrower_BorrowerPhone VARCHAR(50) NOT NULL
+	);
+
+SELECT * FROM tbl_book;
+
+	CREATE TABLE tbl_book_authors (
+		book_authors_AuthorID INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+		book_authors_BookID INT NOT NULL,
+		book_authors_AuthorName VARCHAR(50) NOT NULL
+	);
+
+	SELECT * FROM tbl_book_authors;
