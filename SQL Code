@@ -119,3 +119,123 @@ SELECT * FROM tbl_book WHERE book_PublisherName = 'George Allen & Unwin';
 		('Haley Jackson','231 52nd Avenue New York, NY 10014','212-419-9935'),
 		('Michael Horford','653 Glen Avenue, Ann Arbor, MI 48104','734-998-1513');
 
+SELECT * FROM tbl_book WHERE book_PublisherName = 'George Allen & Unwin';
+
+	INSERT INTO tbl_library_branch
+		(library_branch_BranchName, library_branch_BranchAddress)
+		VALUES
+		('Sharpstown','32 Corner Road, New York, NY 10012'),
+		('Central','491 3rd Street, New York, NY 10014'),
+		('Saline','40 State Street, Saline, MI 48176'),
+		('Ann Arbor','101 South University, Ann Arbor, MI 48104');
+
+	UPDATE tbl_library_branch
+	SET library_branch_BranchName = 'Central'
+	WHERE library_branch_BranchID = 2;
+	
+	SELECT * FROM tbl_library_branch;
+
+	INSERT INTO tbl_borrower
+		(borrower_BorrowerName, borrower_BorrowerAddress, borrower_BorrowerPhone)
+		VALUES
+		('Joe Smith','1321 4th Street, New York, NY 10014','212-312-1234'),
+		('Jane Smith','1321 4th Street, New York, NY 10014','212-931-4124'),
+		('Tom Li','981 Main Street, Ann Arbor, MI 48104','734-902-7455'),
+		('Angela Thompson','2212 Green Avenue, Ann Arbor, MI 48104','313-591-2122'),
+		('Harry Emnace','121 Park Drive, Ann Arbor, MI 48104','412-512-5522'),
+		('Tom Haverford','23 75th Street, New York, NY 10014','212-631-3418'),
+		('Haley Jackson','231 52nd Avenue New York, NY 10014','212-419-9935'),
+		('Michael Horford','653 Glen Avenue, Ann Arbor, MI 48104','734-998-1513');
+
+SELECT * FROM tbl_borrower;
+
+CREATE TABLE tbl_book_loans (
+	book_loans_BookID INT NOT NULL,
+	book_loans_BranchID INT NOT NULL,
+	book_loans_CardNo INT NOT NULL,
+	book_loans_DateOut DATE,
+	book_loans_DueDate DATE
+);
+
+	INSERT INTO tbl_book_loans
+		(book_loans_BookID, book_loans_BranchID, book_loans_CardNo, book_loans_DateOut, book_loans_DueDate)
+		VALUES
+		('1','1','100','1-1-18','2-2-18'),
+		('2','1','100','1-1-18','2-2-18'),
+		('3','1','100','1-1-18','2-2-18'),
+		('4','1','100','1-1-18','2-2-18'),
+		('5','1','102','1-3-18','2-3-18'),
+		('6','1','102','1-3-18','2-3-18'),
+		('7','1','102','1-3-18','2-3-18'),
+		('8','1','102','1-3-18','2-3-18'),
+		('9','1','102','1-3-18','2-3-18'),
+		('11','1','102','1-3-18','2-3-18'),
+		('12','2','105','12-12-17','1-12-18'),
+		('10','2','105','12-12-17','1-12-17'),
+		('20','2','105','2-3-18','3-3-18'),
+		('18','2','105','1-5-18','2-5-18'),
+		('19','2','105','1-5-18','2-5-18'),
+		('19','2','100','1-3-18','2-3-18'),
+		('11','2','106','1-7-18','2-7-18'),
+		('1','2','106','1-7-18','2-7-18'),
+		('2','2','100','1-7-18','2-7-18'),
+		('3','2','100','1-7-18','2-7-18'),
+		('5','2','105','12-12-17','1-12-18'),
+		('4','3','103','1-9-18','2-9-18'),
+		('7','3','102','1-3-18','2-3-18'),
+		('17','3','102','1-3-18','2-3-18'),
+		('16','3','104','1-3-18','2-3-18'),
+		('15','3','104','1-3-18','2-3-18'),
+		('15','3','107','1-3-18','2-3-18'),
+		('14','3','104','1-3-18','2-3-18'),
+		('13','3','107','1-3-18','2-3-18'),
+		('13','3','102','1-3-18','2-3-18'),
+		('19','3','102','12-12-17','1-12-18'),
+		('20','4','103','1-3-18','2-3-18'),
+		('1','4','102','1-12-18','2-12-18'),
+		('3','4','107','1-3-18','2-3-18'),
+		('18','4','107','1-3-18','2-3-18'),
+		('12','4','102','1-4-18','2-4-18'),
+		('11','4','103','15-1-18','15-2-18'),
+		('9','4','103','15-1-18','15-2-18'),
+		('7','4','107','1-1-18','2-2-18'),
+		('4','4','103','1-1-18','2-2-18'),
+		('1','4','103','2-2-17','3-2-18'),
+		('20','4','103','1-3-18','2-3-18'),
+		('1','4','102','1-12-18','2-12-18'),
+		('3','4','107','13-1-18','13-2-18'),
+		('18','4','107','13-1-18','13-2-18'),
+		('12','4','102','14-1-18','14-2-18'),
+		('11','4','103','15-1-18','15-2-18'),
+		('9','4','103','15-1-18','15-2-18'),
+		('7','4','107','19-1-18','19-2-18'),
+		('4','4','103','19-1-18','19-2-18'),
+		('1','4','103','22-1-18','22-2-18');
+
+SELECT * FROM tbl_book_loans;
+
+	INSERT INTO tbl_book_authors
+(book_authors_BookID,book_authors_AuthorName)
+		VALUES
+		('1','Patrick Rothfuss'),
+		('2','Stephen King'),
+		('3','Stephen King'),
+		('4','Frank Herbert'),
+		('5','J.R.R. Tolkien'),
+		('6','Christopher Paolini'),
+		('6','Patrick Rothfuss'),
+		('8','J.K. Rowling'),
+		('9','Haruki Murakami'),
+		('10','Shel Silverstein'),
+		('11','Douglas Adams'),
+		('12','Aldous Huxley'),
+		('13','William Goldman'),
+		('14','Chuck Palahniuk'),
+		('15','Louis Sachar'),
+		('16','J.K. Rowling'),
+		('17','J.K. Rowling'),
+		('18','J.R.R. Tolkien'),
+		('19','George R.R. Martin'),
+		('20','Mark Lee');
+
+	SELECT * FROM tbl_book_authors;
