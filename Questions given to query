@@ -1,0 +1,10 @@
+1. How many copies of the book 'The Lost Tribe' are owned by the library branch whose name is 'Sharpstown'?
+		Ans-
+						SELECT C.No_Of_Copies as 'Number of Copies', 
+					  			 L.BranchName AS 'Branch Name',
+									 B.Title AS 'Book Name'
+						FROM Book_Copies C
+								INNER JOIN Books B on C.BookID=B.BookID
+				   		  INNER JOIN Library_Branch L on C.BranchID=L.BranchID
+						WHERE B.Title = 'The Lost Tribe'
+									AND L.BranchName = 'Sharpstown';
