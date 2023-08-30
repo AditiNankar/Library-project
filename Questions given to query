@@ -31,7 +31,23 @@ Ans-
 				;
 4. For each book that is loaned out from the 'Sharpstown' branch and whose due date is today, retreive the book title, the borrowers name and the borrowers address.
 Ans-
-
+	First change table data in bookloans to contain a set of dates that reflect today, so change given set of dates with the branch in Sharpstown to sysdate so query can be completed	
+		FROM Book_Loans
+		SET DueDate = sysdate()
+		WHERE BranchID = 1
+		AND DueDate = '2018-02-02'
+		;
+		
+				SELECT L.DueDate
+				       , B.Title
+				       , W.BorrowerName
+				       , W.BorrowerAddress
+				FROM Book_Loans L
+				INNER JOIN Books B ON L.BookID = B.BookID
+				INNER JOIN Borrower W ON L.CardNo = W.CardNo 
+				WHERE L.BranchID = 1 
+				AND L.DueDate = curdate()
+				;
 
 5. For each library  branch, retrieve the branch name and total number of books loaned out from the branch.
 Ans-
