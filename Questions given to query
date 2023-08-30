@@ -46,5 +46,14 @@ Ans-
 
 6. Retreive the names, addresses and number of books checked out for all borrowers who have more than 5 books checked out.
 Ans-
+				SELECT B.BorrowerName
+					 , B.BorrowerAddress
+					 , COUNT(L.LoanID) AS Total
+				FROM Borrower B
+				INNER JOIN Book_Loans L
+					ON B.CardNo=L.CardNo
+				GROUP BY 1,2
+				HAVING Total > 5
+				;
 
 7. For each book authored by 'Stephen King', retrieve the title and number of copies owned by the library branch whose name is 'Central'.
