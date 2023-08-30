@@ -1,8 +1,8 @@
 1. How many copies of the book 'The Lost Tribe' are owned by the library branch whose name is 'Sharpstown'?
 		Ans-
-				SELECT C.No_Of_Copies as 'Number of Copies', 
-					L.BranchName AS 'Branch Name',
-					B.Title AS 'Book Name'
+				SELECT C.No_Of_Copies as 'Number of Copies' 
+				       ,L.BranchName AS 'Branch Name'
+				       ,B.Title AS 'Book Name'
 				FROM Book_Copies C
 					INNER JOIN Books B on C.BookID=B.BookID
 				   	INNER JOIN Library_Branch L on C.BranchID=L.BranchID
@@ -12,9 +12,9 @@
 2. How many copies of the book titled 'The Lost Tribe' are owned by each library branch?
 		Ans-
 				SELECT C.BranchID AS 'Branch ID', 
-					LB.BranchName AS 'Branch Name',
-					C.No_Of_Copies AS 'Number of Copies',
-					B.Title AS 'Book Title'
+					LB.BranchName AS 'Branch Name'
+				        ,C.No_Of_Copies AS 'Number of Copies'
+					,B.Title AS 'Book Title'
 				FROM Book_Copies AS C
 					INNER JOIN Books AS B ON C.BookID = B.BookID
 					INNER JOIN Library_Branch AS LB ON C.BranchID = LB.BranchID
@@ -35,6 +35,14 @@ Ans-
 
 5. For each library  branch, retrieve the branch name and total number of books loaned out from the branch.
 Ans-
+				SELECT B.BranchName
+				      ,COUNT(L.LoanID) AS Total
+				FROM Book_Loans L
+				INNER JOIN Library_Branch B
+					ON L.BranchID=B.BranchID
+				GROUP BY B.BranchName
+				ORDER BY B.BranchName 
+				;
 
 6. Retreive the names, addresses and number of books checked out for all borrowers who have more than 5 books checked out.
 Ans-
