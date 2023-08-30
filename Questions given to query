@@ -57,3 +57,18 @@ Ans-
 				;
 
 7. For each book authored by 'Stephen King', retrieve the title and number of copies owned by the library branch whose name is 'Central'.
+Ans-
+				SELECT B.Title
+				       , A.AuthorName
+				       , C.No_Of_Copies
+				       , L.BranchName
+				FROM Book_Authors A
+				INNER JOIN Books B
+					ON A.BookID = B.BookId
+				INNER JOIN Book_Copies C
+					ON B.BookID = C.BookId
+				INNER JOIN Library_Branch L
+					ON C.BranchID = L.BranchId
+				WHERE A.AuthorName = 'Stephen King'
+					AND L.BranchName = 'Central'
+				;
