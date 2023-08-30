@@ -8,3 +8,16 @@
 				   		  INNER JOIN Library_Branch L on C.BranchID=L.BranchID
 						WHERE B.Title = 'The Lost Tribe'
 									AND L.BranchName = 'Sharpstown';
+
+SELECT LB.BranchName AS 'Branch Name',
+	   C.No_Of_Copies AS 'Number of Copies'
+FROM Book_Copies C
+	INNER JOIN Books B
+		ON C.BookID=B.BookID
+	INNER JOIN Book_Loans L
+		ON B.BookID=L.BookID
+	INNER JOIN Library_Branch LB
+		ON L.BranchID=LB.BranchID
+WHERE B.Title = 'The Lost Tribe'
+GROUP BY LB.BranchName, C.No_Of_Copies
+;
