@@ -3,3 +3,56 @@ This paragraph was given so I will form a few requirements based on what is give
 The concept behind this project is to create a library management system that is capable to issue books and let consumers check different books and their titles categorically. It keeps track of all the details about the books in the library, their price, status, and the total number of books available in the Library. The user will find this automated system easy instead of using the manual writing system.
 
 Requirements and Queries:
+
+High level statement:
+The concept behind this project is to create a library management system that is capable to issue books and let consumers check different books and their titles categorically. It keeps track of all the details about the books in the library, their price, status, and the total number of books available in the Library. The user will find this automated system easy instead of using the manual writing system.
+
+1.	How many books available out of the number of copies at a library branch wich falls under the requirement of letting the customers have the capability to issue books. They can only do so if they know the book is available.
+								
+								SELECT L.BranchID
+									   , B.Title
+									   , (C.No_Of_Copies - count(L.BookID) ) AS 'Copies Available'
+								FROM Book_Copies C
+								INNER JOIN Books B
+									ON C.BookID = B.BookID
+								INNER JOIN Book_Loans L
+									ON C.BookID = L.BookID and C.BranchID = L.BranchID
+								GROUP BY L.BranchID, L.BookID, B.Title, C.No_Of_Copies
+								ORDER BY L.BranchID, L.BookID, B.Title, C.No_Of_Copies
+								;
+
+2.	How many days left till the loan ends falls under the requirement of being able to see how many books available at the library. The librarian will be able to check how many days until a book is to be returned.
+
+								SELECT B.Title
+								, MIN(DueDate+1) AS ‘Date available’
+								FROM Book_Loans L
+								INNER JOIN Books B
+									ON L.BookID = B.BookID
+								GROUP BY B.Title
+								;
+
+
+3.	Search for number of copies at a branch for a book title or author for a book based on the statement of letting customers check for different books and their titles categorically. The categories I have chosen are book titles and authors.
+
+								SELECT B.Title
+									, C. No_of_Copies
+									, L. BranchName
+								FROM Books B
+								INNER JOIN Book_Copies C
+									ON B.BookID = C.BookID
+								INNER JOIN Library_Branch L
+									ON C.BranchID = L.BranchID
+								WHERE B.Title = @Title
+									AND BranchName = @BranchName
+								;
+								
+								SELECT AuthorName
+								FROM Book_Authors A
+								INNER JOIN Book_Copies C
+									ON A.BookID = C.BookID
+								INNER JOIN Library_Branch L
+									ON C.BranchID = L.BranchID
+								Where AuthorName = @AuthorName
+								AND BranchName = @BranchName
+								;
+								
